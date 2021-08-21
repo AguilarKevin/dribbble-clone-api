@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "<h1>xd</h1>";
+    return redirect('https://clone-dribbble.herokuapp.com/');
 });

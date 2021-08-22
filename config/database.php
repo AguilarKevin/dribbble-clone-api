@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+//$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+//
+//$host = $url["host"];
+//$username = $url["user"];
+//$password = $url["pass"];
+//$database = substr($url["path"], 1);
 
 return [
 
@@ -26,10 +26,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('CLEARDB_DATABASE_URL'),
-            'host' => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'host' => 'us-cdbr-east-04.cleardb.com',
+            'database' => 'heroku_dbab0be840abde2',
+            'username' => 'b89a07044af51e',
+            'password' => '2c4cc67e',
             'port' => env('DB_PORT', '3306'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',

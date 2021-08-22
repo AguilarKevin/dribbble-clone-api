@@ -61,6 +61,8 @@ class AuthController extends Controller
 
     public function posts(Request $request)
     {
-        return PostResource::collection(Post::all());
+        return PostResource::collection(Post::latest()->paginate(20));
     }
+
+
 }

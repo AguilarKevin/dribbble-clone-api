@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+         User::factory(2)->create();
 
         $emails = ['kevin@gmail.com', 'alex@gmail.com'];
-         User::factory(2)->create();
          $users = User::query()->get();
          $users->each(function ($user, $key) use($emails){
              Log::info("token".$key." ".$user->createToken('auth_token')->plainTextToken);;

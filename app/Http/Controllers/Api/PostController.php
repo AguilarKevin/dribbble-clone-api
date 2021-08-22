@@ -22,14 +22,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
-        $post->image = $request->validate(['image'=> ['required']])["image"];
         $post->user_id = $request->user()->id;
         $post->views = 0;
         $post->likes = 0;
-        $post->save();
 
         $image = $request->file('image');
-//        $post->image()->create(['path' => $image->store('image', 'public')]);
+        $post->image = 'http://127.0.0.1:8000/storage/'.$image->store('image', 'public');
+        $post->save();
+
 
         return response()->json([
             'image' => $post->image,

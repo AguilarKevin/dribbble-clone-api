@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Media extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'image',
-        'likes',
-        'views',
-        'user_id'
+        'domain',
+        'path',
+        'shot_id'
     ];
 
-    public function user()
+    public function shot()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Shot::class);
     }
 }

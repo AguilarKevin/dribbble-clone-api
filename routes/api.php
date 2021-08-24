@@ -19,8 +19,8 @@ Route::get('/user', [UserController::class, 'show'])->middleware('auth:sanctum')
 
 Route::post('/uploads/new', [ShotController::class, 'store'])->middleware('auth:sanctum');
 
-Route::get('/uploads', [ShotController::class, 'index']);
+Route::get('/shots', [ShotController::class, 'index']);
 
-Route::get('/uploads/{shot}', [ShotController::class, 'show']);
+Route::get('/shots/{shot}', [ShotController::class, 'show']);
 
 Route::get('/tags/{tagname}', [TagController::class, 'show']);

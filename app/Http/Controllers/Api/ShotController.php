@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ShotResource;
 use App\Models\Shot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class ShotController extends Controller
 {
@@ -15,25 +17,48 @@ class ShotController extends Controller
 
     public function create(){}
 
-    public function store(Request $request)
-    {
-        $shot = new Shot();
-        $shot->user_id = $request->user()->id;
-        $shot->views = 0;
-        $shot->likes = 0;
+    public function store(Request $request){
 
-        $image = $request->file('image');
-        $shot->image = 'http://127.0.0.1:8000/storage/'.$image->store('image', 'public');
+        $data = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'tags' => 'required',
+            'media' => 'required'
+        ]);
+
+        $shot = $request->user()->shots()->create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'views' => 0
+        ]);
+
+        $tags = Str::of($data['tags'])->explode(',');
+
+        $tags->each(function ($tag) use($shot){
+            $shot->tags()->create(['name' => $tag, 'slug' => Str::slug($tag)]);
+        });
+
+        $media = $request->file('media');
+
+        foreach ($media as $file){
+            $shot->media()->create([
+                'domain' => 'http://127.0.0.1:8000',
+                'path' => $file->store('media', 'public'),
+
+            ]);
+        }
+
         $shot->save();
-
+        $shot->load('media');
 
         return response()->json([
-            'image' => $shot->image,
-            'user_id' => $shot->user_id,
+            'shot' => $shot
         ]);
     }
 
-    public function show(Shot $shot){}
+    public function show(Shot $shot){
+        return new ShotResource($shot);
+    }
 
     public function edit(Shot $shot){}
 

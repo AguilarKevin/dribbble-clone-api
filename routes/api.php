@@ -20,4 +20,6 @@ Route::post('/uploads/new', [ShotController::class, 'store'])->middleware('auth:
 
 Route::get('/uploads', [ShotController::class, 'index']);
 
+Route::get('/uploads/{shot}', [ShotController::class, 'show']);
+
 Route::get('/tags/{tagname}', [TagController::class, 'show']);

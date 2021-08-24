@@ -21,14 +21,14 @@ class UserController extends Controller
         //
     }
 
-    public function show(User $user)
+    public function show(Request $request)
     {
-        return new UserResource($user);
+        return new UserResource($request->user());
     }
 
     public function update(Request $request, User $user)
     {
-        //
+
     }
 
     public function destroy(User $user)

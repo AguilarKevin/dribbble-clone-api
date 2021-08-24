@@ -54,15 +54,4 @@ class AuthController extends Controller
         ]);
     }
 
-    public function user(Request $request)
-    {
-        return $request->user();
-    }
-
-    public function posts(Request $request)
-    {
-        return PostResource::collection(Post::latest()->paginate(20));
-    }
-
-
 }

@@ -15,8 +15,8 @@ class ShotTagTable extends Migration
     {
         Schema::create('shot_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shot_id');
-            $table->foreignId('tag_id');
+            $table->foreignId('shot_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

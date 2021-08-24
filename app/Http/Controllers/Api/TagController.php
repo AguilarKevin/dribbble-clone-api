@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ShotCollection;
+use App\Http\Resources\ShotResource;
+use App\Models\Shot;
 use App\Models\Tag;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -13,9 +18,13 @@ class TagController extends Controller
 
     public function store(Request $request){}
 
-    public function show(Tag $tag){}
+    public function show($tagname){
+        $tag = Tag::where('slug', '=', $tagname)->get()[0];
 
-    public function edit(Tag $tag){}
+        return new ShotCollection($tag->shots);
+    }
+
+    public function edit($tag){}
 
     public function update(Request $request, Tag $tag){}
 

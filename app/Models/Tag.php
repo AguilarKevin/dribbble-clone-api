@@ -10,22 +10,11 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable =[
-        'name'
+        'name',
+        'slug'
     ];
 
     public function shots(){
         return $this->belongsToMany(Shot::class, 'shot_tag');
     }
-//
-//shot
-//id - integer
-//
-//
-//tags
-//id - integer
-//name - string
-//
-//shot_tag
-//shot_id - integer
-//tag_id - integer
 }

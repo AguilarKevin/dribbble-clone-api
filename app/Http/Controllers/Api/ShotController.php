@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Post;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ShotResource;
 use App\Models\Shot;
 use Illuminate\Http\Request;
 
 class ShotController extends Controller
 {
-    public function index(){}
+    public function index(){
+        return ShotResource::collection(Shot::latest()->paginate(20));
+    }
 
     public function create(){}
 

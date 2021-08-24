@@ -11,9 +11,12 @@ class ShotResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'title' => $this->title,
+            'description' => $this->description,
+            'media' => $this->media,
             'likes' => $this->likes,
             'views' => $this->views,
+            'tags' => $this->tags,
             'user' => $this->user
         ];
     }

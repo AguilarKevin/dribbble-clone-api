@@ -13,7 +13,7 @@ class ShotFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->paragraph(1),
+            'title' => $this->faker->sentence(5),
             'description' => $this->faker->paragraph(6),
             'views'  => $this->faker->numberBetween(50, 7000),
             'user_id' => $this->faker->randomElement(User::pluck('id'))

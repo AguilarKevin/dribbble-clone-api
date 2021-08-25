@@ -17,6 +17,8 @@ class ShotsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->unsignedBigInteger('likes');
+            $table->unsignedBigInteger('saves');
             $table->unsignedBigInteger('views');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

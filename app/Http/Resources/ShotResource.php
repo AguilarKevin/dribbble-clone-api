@@ -16,6 +16,8 @@ class ShotResource extends JsonResource
             'media' => $this->media,
             'likes' => $this->likes,
             'views' => $this->views,
+            'saves' => $this->saves,
+            'created_at' => $this->created_at,
             'tags' => new TagCollection($this->tags),
             'user' => new UserResource($this->user)
         ];

@@ -29,16 +29,14 @@ class DatabaseSeeder extends Seeder
              $user->save();
          });
 
-        Shot::factory(50)->create();
-        Media::factory(70)->create();
-
         $tags = ['black', 'mobile app', 'ui', 'dark theme', 'light theme', 'web ui', 'prototype', 'white', 'yellow', 'blue'];
-
-
         foreach ($tags as $tagname){
             $tag = new Tag(['name' =>  $tagname, 'slug' => Str::slug($tagname, '-')]);
             $tag->save();
         }
+
+
+        Shot::factory(60)->create();
 
         $shots = Shot::query()->get();
         $shots->each(function ($shot, $key){

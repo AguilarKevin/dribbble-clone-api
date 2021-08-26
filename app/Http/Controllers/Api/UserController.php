@@ -16,23 +16,9 @@ class UserController extends Controller
         return new UserCollection(User::latest()->paginate());
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function show(Request $request)
     {
         return new UserResource($request->user());
     }
 
-    public function update(Request $request, User $user)
-    {
-
-    }
-
-    public function destroy(User $user)
-    {
-        //
-    }
 }

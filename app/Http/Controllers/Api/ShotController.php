@@ -15,8 +15,6 @@ class ShotController extends Controller
         return ShotResource::collection(Shot::latest()->paginate(20));
     }
 
-    public function create(){}
-
     public function store(Request $request){
 
         $data = $request->validate([
@@ -29,7 +27,9 @@ class ShotController extends Controller
         $shot = $request->user()->shots()->create([
             'title' => $data['title'],
             'description' => $data['description'],
-            'views' => 0
+            'views' => 0,
+            'saves' => 0,
+            'likes' => 0
         ]);
 
         $tags = Str::of($data['tags'])->explode(',');
@@ -44,7 +44,7 @@ class ShotController extends Controller
             $shot->media()->create([
                 'domain' => 'http://127.0.0.1:8000',
                 'path' => $file->store('media', 'public'),
-
+                'mimetype' => $file->getMimeType()
             ]);
         }
 
@@ -60,9 +60,4 @@ class ShotController extends Controller
         return new ShotResource($shot);
     }
 
-    public function edit(Shot $shot){}
-
-    public function update(Request $request, Shot $shot){}
-
-    public function destroy(Shot $shot){}
 }

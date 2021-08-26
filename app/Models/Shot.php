@@ -29,4 +29,8 @@ class Shot extends Model
         return $this->belongsToMany(Tag::class, 'shot_tag');
     }
 
+    public function likes(){
+        $this->hasMany(Like::class);
+    }
+
 }

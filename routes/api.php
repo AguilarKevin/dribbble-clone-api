@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ShotController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserController;

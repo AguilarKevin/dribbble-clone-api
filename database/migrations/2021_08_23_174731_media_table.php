@@ -6,27 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class MediaTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->string('domain');
             $table->string('path');
+            $table->string('mimetype');
             $table->foreignId('shot_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('media');

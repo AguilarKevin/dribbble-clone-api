@@ -55,7 +55,9 @@ class DatabaseSeeder extends Seeder
         $shots->each(function ($shot, $key) use($media){
             for ($i = 0; $i < 4; $i++){
                 $shot->tags()->attach(Arr::random([1,2,3,4,5,6,7,8,9,10]));
-                $shot->media()->create(['domain'=>'https://cdn.dribbble.com', 'path' => Arr::random($media)]);
+                $path = Arr::random($media);
+                $mimetype = Str::containsAll($path, ['.jpg', '.png'])? 'image': 'video';
+                $shot->media()->create(['domain'=>'https://cdn.dribbble.com', 'path' => $path, 'mimetype'=>'']);
             }
         });
     }

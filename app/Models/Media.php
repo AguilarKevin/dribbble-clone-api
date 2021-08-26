@@ -12,6 +12,7 @@ class Media extends Model
     protected $fillable = [
         'domain',
         'path',
+        'mimetype',
         'shot_id'
     ];
 

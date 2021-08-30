@@ -16,10 +16,9 @@ class ShotsTable extends Migration
         Schema::create('shots', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->unsignedBigInteger('likes');
-            $table->unsignedBigInteger('saves');
-            $table->unsignedBigInteger('views');
+            $table->text('description')->default(null);
+            $table->unsignedBigInteger('saves')->default(0);
+            $table->unsignedBigInteger('views')->default(0);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

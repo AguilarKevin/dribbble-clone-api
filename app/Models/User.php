@@ -32,4 +32,8 @@ class User extends Authenticatable
     public function shots(){
         return $this->hasMany(Shot::class);
     }
+
+    public function likedShots(){
+        return $this->belongsToMany(Shot::class, 'shot_user');
+    }
 }

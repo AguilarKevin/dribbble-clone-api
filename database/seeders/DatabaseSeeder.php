@@ -14,19 +14,15 @@ use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
          User::factory(4)->create();
 
          $users = User::query()->get();
-         $users->each(function ($user, $key) {
+         $usersIds = [];
+         $users->each(function ($user, $key) use($usersIds) {
+             array_push($usersIds, $user->id);
              Log::info("token".$key." ".$user->createToken('auth_token')->plainTextToken);
-             $user->save();
          });
 
         $tags = ['black', 'mobile app', 'ui', 'dark theme', 'light theme', 'web ui', 'prototype', 'white', 'yellow', 'blue'];
@@ -55,11 +51,12 @@ class DatabaseSeeder extends Seeder
             '/users/4859/screenshots/15853681/media/2e7b1bce82484a2d28e4514999990cdf.mp4',
         ];
 
-        Shot::factory(60)->create();
+        Shot::factory(50)->create();
         $shots = Shot::query()->get();
-        $shots->each(function ($shot, $key) use($media){
+        $shots->each(function ($shot, $key) use($usersIds, $media){
             for ($i = 0; $i < 5; $i++){
                 $shot->tags()->attach(Arr::random([1,2,3,4,5,6,7,8,9,10]));
+                $shot->likes()->attach( Arr::random([$usersIds]));
                 $path = Arr::random($media);
                 $mimetype = Str::contains($path, ['.jpg', '.png']) ? 'image': 'video';
 

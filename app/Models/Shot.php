@@ -30,7 +30,7 @@ class Shot extends Model
     }
 
     public function likes(){
-        $this->hasMany(Like::class);
+        return $this->belongsToMany(User::class, 'shot_user');
     }
 
 }

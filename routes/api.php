@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\ShotController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserController;
@@ -21,5 +22,7 @@ Route::post('/uploads/new', [ShotController::class, 'store'])->middleware('auth:
 Route::get('/shots', [ShotController::class, 'index']);
 
 Route::get('/shots/{shot}', [ShotController::class, 'show']);
+
+Route::post('/shots/{shot}', [LikeController::class, 'toggle'])->middleware('auth:sanctum');
 
 Route::get('/tags/{tagname}', [TagController::class, 'show']);

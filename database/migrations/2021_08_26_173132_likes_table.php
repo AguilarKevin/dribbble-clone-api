@@ -8,10 +8,10 @@ class LikesTable extends Migration
 {
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('shot_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('shot_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('shot_id')->constrained('shots')->cascadeOnDelete();
             $table->timestamps();
         });
     }

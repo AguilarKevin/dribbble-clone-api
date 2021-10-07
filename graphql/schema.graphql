@@ -1,0 +1,41 @@
+type User{
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+    tag: String!
+    avatar: String
+}
+
+type Shot{
+    id: ID!
+    user: User!
+    title: String!
+    description: String!
+    saves: Int!
+    views: Int!
+    media: [Media!]
+    tags: [Tag!]
+}
+
+type Media{
+    id: ID!
+    domain: String!
+    path: String!
+}
+
+type Tag{
+    name: String!
+    slug: String!
+    shots: [Shot]
+}
+
+type Query {
+    shots: [Shot] @all
+    shot(id: Int! @eq): Shot @find
+
+    tags: [Tag] @all
+    tag(slug: String! @eq):Tag @find
+}
+
+

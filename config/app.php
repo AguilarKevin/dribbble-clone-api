@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
 
+        \Nuwave\Lighthouse\LighthouseServiceProvider::class,
         /*
          * Application Service Providers...
          */

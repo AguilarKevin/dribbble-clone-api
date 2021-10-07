@@ -1,0 +1,5 @@
+"An ISO-8601 encoded UTC date string. Example value: `2021-09-14`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"An ISO-8601 encoded UTC date time string. Example value: `2021-09-14T10:25:45Z`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTimeUtc")

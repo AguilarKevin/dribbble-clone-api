@@ -22,6 +22,7 @@ type Media{
     id: ID!
     domain: String!
     path: String!
+    mimetype: String!
 }
 
 type Tag{

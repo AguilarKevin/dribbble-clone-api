@@ -32,9 +32,8 @@ type Tag{
 }
 
 type Query {
-    shots: [Shot] @all
+    shots: [Shot]! @paginate
     shot(id: Int! @eq): Shot @find
-
     tags: [Tag] @all
     tag(slug: String! @eq):Tag @find
 }

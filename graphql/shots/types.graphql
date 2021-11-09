@@ -1,0 +1,11 @@
+"Represents a Post"
+type Shot @model (class: "App\\Models\\Shot") {
+    id: ID!
+    user: User! @belongsTo
+    title: String!
+    description: String!
+    saves: Int!
+    views: Int!
+    media: [Media!] @hasMany
+    tags: [Tag!] @belongsToMany
+}

@@ -1,41 +1,45 @@
-type User{
-    id: ID!
-    name: String!
-    email: String!
-    password: String!
-    tag: String!
-    avatar: String
-}
+type Query
+type Mutation
 
-type Shot{
-    id: ID!
-    user: User!
-    title: String!
-    description: String!
-    saves: Int!
-    views: Int!
-    media: [Media!]
-    tags: [Tag!]
-}
+#import ./base/*.graphql
+#import ./shots/*.graphql
 
-type Media{
-    id: ID!
-    domain: String!
-    path: String!
-    mimetype: String!
-}
-
-type Tag{
-    name: String!
-    slug: String!
-    shots: [Shot]
-}
-
-type Query {
-    shots: [Shot]! @paginate
-    shot(id: Int! @eq): Shot @find
-    tags: [Tag] @all
-    tag(slug: String! @eq):Tag @find
-}
-
+#type User{
+#    id: ID!
+#    name: String!
+#    email: String!
+#    password: String!
+#    tag: String!
+#    avatar: String
+#}
+#
+#
+#type Media{
+#    id: ID!
+#    domain: String!
+#    path: String!
+#    mimetype: String!
+#}
+#
+#type Tag{
+#    name: String!
+#    slug: String!
+#    shots: [Shot]
+#}
+#
+#type Query {
+#    shots: [Shot]! @paginate
+#    shot(id: Int! @eq): Shot @find
+#    tags: [Tag] @all
+#    tag(slug: String! @eq):Tag @find
+#}
+#
+#type Mutation {
+#    createShot(
+#        title: String!
+#        description: String!
+#        media: [MediaInput!]!
+#        tags: [String!]!
+#    ): Shot @create
+#}
 

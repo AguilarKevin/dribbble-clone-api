@@ -1,0 +1,4 @@
+extend type Query {
+    tags: [Tag] @all
+    tag(slug: String! @eq):Tag @find
+}

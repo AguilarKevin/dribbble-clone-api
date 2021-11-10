@@ -1,0 +1,5 @@
+input CreateMediaInput {
+    domain: String!
+    path: String!
+    mimetype: String!
+}

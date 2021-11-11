@@ -7,17 +7,17 @@
     "require": {
         "php": "^8.0",
         "ext-pdo": "*",
-        "fakerphp/faker": "^1.9.1",
-        "fruitcake/laravel-cors": "^2.0",
+        "fakerphp/faker": "^1.16.0",
+        "fruitcake/laravel-cors": "^2.0.4",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.54",
+        "laravel/framework": "^8.70.2",
         "laravel/sanctum": "^v2.12.1",
         "laravel/tinker": "^v2.6.2",
-        "nuwave/lighthouse": "^v5.24.0"
+        "nuwave/lighthouse": "^v5.25.0"
     },
     "require-dev": {
         "facade/ignition": "^2.16.0",
-        "laravel/sail": "^1.12.2",
+        "laravel/sail": "^v1.12.4",
         "mll-lab/laravel-graphql-playground": "^2.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^v5.10.0",

@@ -1,9 +1,8 @@
 extend type Mutation {
-    CreateUser(
-        id: ID!
-        name: String!
-        email: String!
-        tag: String!
-        avatar: String!
-    ): User! @create
+    "Log in to a new session and get the user."
+    login(email: String!): User!
+
+    "Log out from the current session, showing the user one last time."
+    logout: User @guard
+
 }

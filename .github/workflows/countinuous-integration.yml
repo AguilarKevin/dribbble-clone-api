@@ -3,7 +3,7 @@ name: Continuous integration
 on: [pull_request]
 
 env:
-  REQUIRED_PHP_EXTENSIONS: curl, imagick, mbstring, pgsql
+  REQUIRED_PHP_EXTENSIONS: curl, imagick, mbstring, mysql, xml
 
 jobs:
   check-unused-composer-dependencies:
@@ -83,17 +83,17 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
-        image: postgres
+      mysql:
+        image: mysql:latest
         env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-retries 5
-          --health-timeout 5s
+          MYSQL_DATABASE: test_database
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root
         ports:
-          - 5432
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout

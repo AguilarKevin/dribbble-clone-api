@@ -21,7 +21,7 @@ class ShotsQueryTest extends TestCase
 
         User::factory(4)->create();
         Shot::factory(5)->create();
-        
+
         $this->graphQL(
         /* @lang GraphQL */
             '

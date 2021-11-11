@@ -85,7 +85,6 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: dribbble_test
         options: >-
           --health-cmd "mysqladmin ping"
           --health-interval 10s

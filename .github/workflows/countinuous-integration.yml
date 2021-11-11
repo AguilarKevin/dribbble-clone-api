@@ -84,13 +84,14 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_DATABASE: test_database
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_USER: root
           MYSQL_PASSWORD: root
-          MYSQL_ROOT_PASSWORD: root
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-retries 5
+          --health-timeout 5s
         ports:
-          - 3306:3306
+          - 3306
 
     steps:
       - name: Checkout
@@ -129,7 +130,7 @@ jobs:
       - name: Run tests with phpunit/phpunit
         run: php artisan test --parallel --coverage-clover=coverage.xml
         env:
-          DB_PORT: ${{ job.services.postgres.ports[5432] }}
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
       - name: Send code coverage report to codecov
         run: bash <(curl -s https://codecov.io/bash)

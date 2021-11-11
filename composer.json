@@ -15,6 +15,9 @@
         "nuwave/lighthouse": "^v5.25.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-ide-helper": "^2.10",
+        "friendsofphp/php-cs-fixer": "^3.1",
         "brianium/paratest": "^6.3",
         "fakerphp/faker": "^1.16.0",
         "facade/ignition": "^2.16.0",
@@ -53,6 +56,15 @@
         "post-install-cmd": [
             "php artisan clear-compiled",
             "chmod -R 777 public/"
+        ],
+        "analyse": "phpstan analyse --configuration=phpstan.neon",
+        "ide-helper": [
+            "@php artisan ide-helper:eloquent",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite",
+            "@php artisan lighthouse:ide-helper",
+            "@php scripts/fixes/graphql-fix-namespace-directive-definition.php"
         ]
     },
     "extra": {

@@ -73,7 +73,7 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install
-        
+
 
   tests:
     name: PHP tests

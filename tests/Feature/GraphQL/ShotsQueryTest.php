@@ -12,13 +12,11 @@ use Tests\TestCase;
 
 class ShotsQueryTest extends TestCase
 {
-
     use WithFaker;
 
     /** @test */
     public function it_should_return_shots(): void
     {
-
         User::factory(4)->create();
         Shot::factory(5)->create();
 
@@ -62,7 +60,6 @@ class ShotsQueryTest extends TestCase
     /** @test */
     public function it_should_return_a_shot(): void
     {
-
         User::factory(1)->create();
         Shot::factory()->create([
             'id' => 1,
@@ -72,7 +69,6 @@ class ShotsQueryTest extends TestCase
             'saves'  => $this->faker->numberBetween(50, 70),
             'user_id' => $this->faker->randomElement(User::pluck('id')),
         ]);
-
 
         $this->graphQL(
         /* @lang GraphQL */

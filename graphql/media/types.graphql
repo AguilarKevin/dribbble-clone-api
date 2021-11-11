@@ -1,0 +1,6 @@
+type Media @model (class: "App\\Models\\Media"){
+    id: ID!
+    domain: String!
+    path: String!
+    mimetype: String!
+}

@@ -1,0 +1,9 @@
+extend type Mutation {
+    CreateUser(
+        id: ID!
+        name: String!
+        email: String!
+        tag: String!
+        avatar: String!
+    ): User! @create
+}

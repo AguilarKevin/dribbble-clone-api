@@ -1,0 +1,8 @@
+extend type Mutation {
+    CreateShot (
+        title: String!
+        description: String!
+        media: [CreateMediaInput!]!
+        tags: [String!]!
+    ): Shot! @create
+}

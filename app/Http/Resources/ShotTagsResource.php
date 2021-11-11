@@ -6,12 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ShotTagsResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
             'name' => $this->name,
-            'slug' => $this->slug
+            'slug' => $this->slug,
         ];
     }
 }

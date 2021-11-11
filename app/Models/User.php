@@ -19,7 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'tag',
-        'avatar'
+        'avatar',
     ];
 
     protected $hidden = [
@@ -31,11 +31,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function shots(): HasMany{
+    public function shots(): HasMany
+    {
         return $this->hasMany(Shot::class);
     }
 
-    public function likedShots(): BelongsToMany{
+    public function likedShots(): BelongsToMany
+    {
         return $this->belongsToMany(Shot::class, 'shot_user');
     }
 }

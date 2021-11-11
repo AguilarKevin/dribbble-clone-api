@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LikeFactory extends Factory
 {
-
     protected $model = Like::class;
 
     public function definition()

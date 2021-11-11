@@ -10,9 +10,9 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'name',
-        'slug'
+        'slug',
     ];
 
     public function shots(): BelongsToMany

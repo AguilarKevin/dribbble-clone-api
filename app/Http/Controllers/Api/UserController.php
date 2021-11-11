@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function index()
     {
         return new UserCollection(User::latest()->paginate());
@@ -20,5 +19,4 @@ class UserController extends Controller
     {
         return new UserResource($request->user());
     }
-
 }

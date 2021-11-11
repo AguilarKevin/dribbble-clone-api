@@ -8,5 +8,4 @@ use PhpParser\Error;
 
 class Logout
 {
-
 }

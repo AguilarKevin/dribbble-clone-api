@@ -10,7 +10,6 @@ class ShotsQueryTest extends TestCase
     /** @test */
     public function it_should_return_shots(): void
     {
-
         $this->seed();
 
         $this->graphQL(
@@ -47,7 +46,6 @@ class ShotsQueryTest extends TestCase
             ->assertJson(function (AssertableJson $json) {
                 $json->has('data.shots.data')
                 ->has('data.shots.data.0')->dd();
-
             });
     }
 
@@ -85,7 +83,6 @@ class ShotsQueryTest extends TestCase
         )->assertSuccessful()
             ->assertJson(function (AssertableJson $json) {
                 $json->has('data.title');
-
             });
     }
 }

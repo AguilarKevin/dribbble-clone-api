@@ -17,8 +17,7 @@ class ShotFactory extends Factory
             'description' => $this->faker->paragraph(6),
             'views'  => $this->faker->numberBetween(50, 7000),
             'saves'  => $this->faker->numberBetween(50, 70),
-            'user_id' => $this->faker->randomElement(User::pluck('id'))
+            'user_id' => $this->faker->randomElement(User::pluck('id')),
         ];
     }
 }
-

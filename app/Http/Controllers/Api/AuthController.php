@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-
     public function register(Request $request)
     {
         $validatedData = $request->validate([
@@ -27,7 +26,7 @@ class AuthController extends Controller
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
             'tag' => 'pro',
-            'avatar' => 'https://avatars.githubusercontent.com/u/36524241?v=4'
+            'avatar' => 'https://avatars.githubusercontent.com/u/36524241?v=4',
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -39,9 +38,9 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (! Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'Invalid login details'
+                'message' => 'Invalid login details',
             ], 401);
         }
 
@@ -54,5 +53,4 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
-
 }

@@ -188,7 +188,6 @@ return [
 
     'debug' => env('LIGHTHOUSE_DEBUG', \GraphQL\Error\DebugFlag::INCLUDE_DEBUG_MESSAGE | \GraphQL\Error\DebugFlag::INCLUDE_TRACE),
 
-
     'error_handlers' => [
         \Nuwave\Lighthouse\Execution\AuthenticationErrorHandler::class,
         \Nuwave\Lighthouse\Execution\AuthorizationErrorHandler::class,
@@ -196,7 +195,6 @@ return [
         \Nuwave\Lighthouse\Execution\ExtensionErrorHandler::class,
         \Nuwave\Lighthouse\Execution\ReportingErrorHandler::class,
     ],
-
 
     'field_middleware' => [
         \Nuwave\Lighthouse\Schema\Directives\TrimDirective::class,
@@ -206,8 +204,6 @@ return [
         \Nuwave\Lighthouse\Schema\Directives\SpreadDirective::class,
         \Nuwave\Lighthouse\Schema\Directives\RenameArgsDirective::class,
     ],
-
-
 
     'global_id_field' => 'id',
 

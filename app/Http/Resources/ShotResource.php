@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ShotResource extends JsonResource
 {
-
     public function toArray($request)
     {
         return [
@@ -19,7 +18,7 @@ class ShotResource extends JsonResource
             'saves' => $this->saves,
             'created_at' => $this->created_at,
             'tags' => new ShotTagsCollection($this->tags),
-            'users' => new UserResource($this->user)
+            'users' => new UserResource($this->user),
         ];
     }
 }

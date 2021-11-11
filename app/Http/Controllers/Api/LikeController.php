@@ -17,8 +17,9 @@ class LikeController extends Controller
         $shot->load(['likes']);
         $shot->likes()->toggle($request->user()->id);
         $shot->save();
+
         return response()->json([
-            'shot'=>  $shot
+            'shot'=>  $shot,
         ]);
     }
 }

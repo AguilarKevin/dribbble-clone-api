@@ -73,9 +73,7 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install
-
-      - name: Run phpstan/phpstan
-        run: vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
+        
 
   tests:
     name: PHP tests
@@ -93,7 +91,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306:3306
-           
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2

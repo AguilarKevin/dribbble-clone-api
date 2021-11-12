@@ -16,21 +16,20 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-         User::factory(4)->create();
+        User::factory(4)->create();
 
-         $users = User::query()->get();
-         $usersIds = [];
-         $users->each(function ($user, $key) use($usersIds) {
-             array_push($usersIds, $user->id);
-             Log::info("token".$key." ".$user->createToken('auth_token')->plainTextToken);
-         });
+        $users = User::query()->get();
+        $usersIds = [];
+        $users->each(function ($user, $key) use ($usersIds) {
+            array_push($usersIds, $user->id);
+            Log::info('token'.$key.' '.$user->createToken('auth_token')->plainTextToken);
+        });
 
         $tags = ['black', 'mobile app', 'ui', 'dark theme', 'light theme', 'web ui', 'prototype', 'white', 'yellow', 'blue'];
-        foreach ($tags as $tagname){
+        foreach ($tags as $tagname) {
             $tag = new Tag(['name' =>  $tagname, 'slug' => Str::slug($tagname, '-')]);
             $tag->save();
         }
-
 
         $media = [
             '/users/970957/screenshots/15038039/media/33990dec000002b51b25fe3ac76829a3.mp4',
@@ -53,12 +52,12 @@ class DatabaseSeeder extends Seeder
 
         Shot::factory(50)->create();
         $shots = Shot::query()->get();
-        $shots->each(function ($shot, $key) use($usersIds, $media){
-            for ($i = 0; $i < 5; $i++){
-                $shot->tags()->attach(Arr::random([1,2,3,4,5,6,7,8,9,10]));
-                $shot->likes()->attach( Arr::random([$usersIds]));
+        $shots->each(function ($shot, $key) use ($usersIds, $media) {
+            for ($i = 0; $i < 5; $i++) {
+                $shot->tags()->attach(Arr::random([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+                $shot->likes()->attach(Arr::random([$usersIds]));
                 $path = Arr::random($media);
-                $mimetype = Str::contains($path, ['.jpg', '.png']) ? 'image': 'video';
+                $mimetype = Str::contains($path, ['.jpg', '.png']) ? 'image' : 'video';
 
                 $shot->media()->create(['domain'=>'https://cdn.dribbble.com', 'path' => $path, 'mimetype'=> $mimetype]);
             }

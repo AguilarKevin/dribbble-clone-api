@@ -33,8 +33,9 @@ return [
 
             // Logs in a users if they are authenticated. In contrast to Laravel's 'auth'
             // middleware, this delegates auth and permission checks to the field level.
-            \Nuwave\Lighthouse\Support\Http\Middleware\AttemptAuthentication::class,
+//            \Nuwave\Lighthouse\Support\Http\Middleware\AttemptAuthentication::class,
 
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             // Logs every incoming GraphQL query.
             // \Nuwave\Lighthouse\Support\Http\Middleware\LogGraphQLQueries::class,
         ],
@@ -185,46 +186,7 @@ return [
         'max_count' => null,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Debug
-    |--------------------------------------------------------------------------
-    |
-    | Control the debug level as described in https://webonyx.github.io/graphql-php/error-handling/
-    | Debugging is only applied if the global Laravel debug config is set to true.
-    |
-    | When you set this value through an environment variable, use the following reference table:
-    |  0 => INCLUDE_NONE
-    |  1 => INCLUDE_DEBUG_MESSAGE
-    |  2 => INCLUDE_TRACE
-    |  3 => INCLUDE_TRACE | INCLUDE_DEBUG_MESSAGE
-    |  4 => RETHROW_INTERNAL_EXCEPTIONS
-    |  5 => RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_DEBUG_MESSAGE
-    |  6 => RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_TRACE
-    |  7 => RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_TRACE | INCLUDE_DEBUG_MESSAGE
-    |  8 => RETHROW_UNSAFE_EXCEPTIONS
-    |  9 => RETHROW_UNSAFE_EXCEPTIONS | INCLUDE_DEBUG_MESSAGE
-    | 10 => RETHROW_UNSAFE_EXCEPTIONS | INCLUDE_TRACE
-    | 11 => RETHROW_UNSAFE_EXCEPTIONS | INCLUDE_TRACE | INCLUDE_DEBUG_MESSAGE
-    | 12 => RETHROW_UNSAFE_EXCEPTIONS | RETHROW_INTERNAL_EXCEPTIONS
-    | 13 => RETHROW_UNSAFE_EXCEPTIONS | RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_DEBUG_MESSAGE
-    | 14 => RETHROW_UNSAFE_EXCEPTIONS | RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_TRACE
-    | 15 => RETHROW_UNSAFE_EXCEPTIONS | RETHROW_INTERNAL_EXCEPTIONS | INCLUDE_TRACE | INCLUDE_DEBUG_MESSAGE
-    |
-    */
-
     'debug' => env('LIGHTHOUSE_DEBUG', \GraphQL\Error\DebugFlag::INCLUDE_DEBUG_MESSAGE | \GraphQL\Error\DebugFlag::INCLUDE_TRACE),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Error Handlers
-    |--------------------------------------------------------------------------
-    |
-    | Register error handlers that receive the Errors that occur during execution
-    | and handle them. You may use this to log, filter or format the errors.
-    | The classes must implement \Nuwave\Lighthouse\Execution\ErrorHandler
-    |
-    */
 
     'error_handlers' => [
         \Nuwave\Lighthouse\Execution\AuthenticationErrorHandler::class,
@@ -233,17 +195,6 @@ return [
         \Nuwave\Lighthouse\Execution\ExtensionErrorHandler::class,
         \Nuwave\Lighthouse\Execution\ReportingErrorHandler::class,
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Field Middleware
-    |--------------------------------------------------------------------------
-    |
-    | Register global field middleware directives that wrap around every field.
-    | Execution happens in the defined order, before other field middleware.
-    | The classes must implement \Nuwave\Lighthouse\Support\Contracts\FieldMiddleware
-    |
-    */
 
     'field_middleware' => [
         \Nuwave\Lighthouse\Schema\Directives\TrimDirective::class,
@@ -254,91 +205,17 @@ return [
         \Nuwave\Lighthouse\Schema\Directives\RenameArgsDirective::class,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Global ID
-    |--------------------------------------------------------------------------
-    |
-    | The name that is used for the global id field on the Node interface.
-    | When creating a Relay compliant server, this must be named "id".
-    |
-    */
-
     'global_id_field' => 'id',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Batched Queries
-    |--------------------------------------------------------------------------
-    |
-    | GraphQL query batching means sending multiple queries to the server in one request,
-    | You may set this flag to either process or deny batched queries.
-    |
-    */
 
     'batched_queries' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Transactional Mutations
-    |--------------------------------------------------------------------------
-    |
-    | If set to true, mutations such as @create or @update will be
-    | wrapped in a transaction to ensure atomicity.
-    |
-    */
-
     'transactional_mutations' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Mass Assignment Protection
-    |--------------------------------------------------------------------------
-    |
-    | If set to true, mutations will use forceFill() over fill() when populating
-    | a model with arguments in mutation directives. Since GraphQL constrains
-    | allowed inputs by design, mass assignment protection is not needed.
-    |
-    */
 
     'force_fill' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Batchload Relations
-    |--------------------------------------------------------------------------
-    |
-    | If set to true, relations marked with directives like @hasMany or @belongsTo
-    | will be optimized by combining the queries through the BatchLoader.
-    |
-    */
-
     'batchload_relations' => true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Non-Null Pagination Results
-    |--------------------------------------------------------------------------
-    |
-    | If set to true, the generated result type of paginated lists will be marked
-    | as non-nullable. This is generally more convenient for clients, but will
-    | cause validation errors to bubble further up in the result.
-    |
-    | This setting will be removed and always true in v6.
-    |
-    */
-
     'non_null_pagination_results' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | GraphQL Subscriptions
-    |--------------------------------------------------------------------------
-    |
-    | Here you can define GraphQL subscription broadcaster and storage drivers
-    | as well their required configuration options.
-    |
-    */
 
     'subscriptions' => [
         /*

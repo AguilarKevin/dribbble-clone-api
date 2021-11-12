@@ -13,7 +13,7 @@ class Media extends Model
         'domain',
         'path',
         'mimetype',
-        'shot_id'
+        'shot_id',
     ];
 
     public function shot()

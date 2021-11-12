@@ -16,7 +16,7 @@ class Shot extends Model
         'title',
         'description',
         'views',
-        'user_id'
+        'user_id',
     ];
 
     public function user(): BelongsTo
@@ -24,16 +24,18 @@ class Shot extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function media(): HasMany{
+    public function media(): HasMany
+    {
         return $this->hasMany(Media::class);
     }
 
-    public function tags(): BelongsToMany{
+    public function tags(): BelongsToMany
+    {
         return $this->belongsToMany(Tag::class, 'shot_tag');
     }
 
-    public function likes():BelongsToMany{
+    public function likes():BelongsToMany
+    {
         return $this->belongsToMany(User::class, 'shot_user');
     }
-
 }

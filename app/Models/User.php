@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -17,7 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'tag',
-        'avatar'
+        'avatar',
     ];
 
     protected $hidden = [
@@ -29,11 +31,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function shots(){
+    public function shots(): HasMany
+    {
         return $this->hasMany(Shot::class);
     }
 
-    public function likedShots(){
+    public function likedShots(): BelongsToMany
+    {
         return $this->belongsToMany(Shot::class, 'shot_user');
     }
 }

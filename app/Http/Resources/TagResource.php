@@ -10,7 +10,7 @@ class TagResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'shots' => new ShotCollection($this->shots()->latest()->paginate(10))
+            'shots' => new ShotCollection($this->shots()->latest()->paginate(10)),
         ];
     }
 }

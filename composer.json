@@ -15,6 +15,7 @@
         "laravel/framework": "^8.70.2",
         "laravel/sanctum": "^v2.12.1",
         "laravel/tinker": "^v2.6.2",
+        "mll-lab/laravel-graphql-playground": "^2.6",
         "nuwave/lighthouse": "^v5.25.0"
     },
     "require-dev": {
@@ -26,7 +27,6 @@
         "fakerphp/faker": "^1.16.0",
         "friendsofphp/php-cs-fixer": "^3.1",
         "laravel/sail": "^v1.12.4",
-        "mll-lab/laravel-graphql-playground": "^2.5",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^v5.10.0",
         "phpunit/phpunit": "^9.5.10"
@@ -34,7 +34,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
     },
     "extra": {
         "laravel": {
